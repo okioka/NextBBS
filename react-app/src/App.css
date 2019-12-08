@@ -1,0 +1,40 @@
+/* 中央寄せ */
+.center { 
+  text-align: center;
+}
+
+/* コメント欄の背景 */
+.back {
+  margin-top: 30px;
+  margin-left : auto; 
+  margin-right : auto;
+  height: 70%;
+  width: 60%;
+  background: #BBBBBB;
+}
+
+/* コメント表示部分 */
+.bbs {
+  margin-left : 100px; 
+  margin-right : 100px;
+  text-align: left;
+}
+
+/* ボタンのデザイン */
+.btn {
+  margin: auto;
+  padding: 0.5em 1.5em;
+  color: #000000;
+  background: #FFFFFF;
+  border: solid 2px #000000;
+  border-radius: 3px;
+  transition: 0.4s;
+  font-size: 1.2em;
+}
+
+/* ボタンにカーソルが乗ったら見た目を変える */
+.btn:hover {
+  background: #0033FF;
+  color: #FFFFFF;
+  border: solid 2px #0033FF;
+}

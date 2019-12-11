@@ -48,15 +48,13 @@ export class CommentForm extends React.Component {
     let id = data.length + 1
     let name = document.getElementById("name").value
     let comment = document.getElementById("comment").value
-
     // 入力チェック
     if (name    === "" || name    === null ||
         comment === "" || comment === null) { 
       alert("未入力の項目があります")
       return false
     }
-
-    // 投稿内容をリストに登録
+    // 投稿内容を登録
     data.push({id: id, author: name, text: comment, date : now.toLocaleString()})
     this.setState({data: data})
     // コメントを再レンダリング
@@ -67,11 +65,8 @@ export class CommentForm extends React.Component {
     // 投稿が完了したら投稿フォームを初期化する 
     document.getElementById("name").value = ""
     document.getElementById("comment").value = ""
-
-    return true
-        
+    return true       
   }
-
   render() {
     return (
       <div className="commentForm">

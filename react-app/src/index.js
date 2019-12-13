@@ -4,8 +4,8 @@ import './index.css';
 import {data, CommentBox, CommentForm} from './App';
 import * as serviceWorker from './serviceWorker';
 
-// レンタリング
-// データ無しの場合コメントは実行しない
+// コメント
+// データ無しの場合は表示しない
 if (data.length >= 1) {
     ReactDOM.render(
     <CommentBox data={data} />,

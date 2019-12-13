@@ -4,6 +4,7 @@ import './App.css';
 
 // コメントデータ
 export let data = [
+// テストデータ
 // {id: 1, author: "ユーザー１", text: "初投稿" date: "2020/01/01"},
 // {id: 2, author: "ユーザー２", text: "２つ目の投稿" date: "2020/01/01"}
 ];
@@ -46,18 +47,16 @@ export class CommentForm extends React.Component {
     let id = data.length + 1
     let name = document.getElementById("name").value
     let comment = document.getElementById("comment").value
-
     // 入力チェック
     if (name    === "" || name    === null ||
         comment === "" || comment === null) { 
       alert("未入力の項目があります")
       return false
     }
-
-    // 投稿内容をリストに登録
+    // 投稿内容を登録
     data.push({id: id, author: name, text: comment, date : now.toLocaleString()})
     this.setState({data: data})
-    // 再レンダリング
+    // コメントを再レンダリング
     ReactDOM.render(
       <CommentBox data={data} />,
       document.getElementById('content')
@@ -65,11 +64,8 @@ export class CommentForm extends React.Component {
     // 投稿が完了したら投稿フォームを初期化する 
     document.getElementById("name").value = ""
     document.getElementById("comment").value = ""
-
-    return true
-        
+    return true       
   }
-
   render() {
     return (
       <div className="commentForm">
@@ -84,7 +80,7 @@ export class CommentForm extends React.Component {
 
 // コメント
 class Comment extends React.Component {
-  // コメント削除:SQLじゃないとできないからあとで
+  // TODO:コメント削除はSQLじゃないとできないからあとで作成
   delete(id) {  
   }
 

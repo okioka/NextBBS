@@ -1,23 +1,21 @@
 # BBS
 
-•×‹­—p‚ÉŒfŽ¦”Â‚ðì¬‚·‚é
+å‹‰å¼·ç”¨ã«æŽ²ç¤ºæ¿ã‚’ä½œæˆã™ã‚‹
 
-# ‹@”\
+# æ©Ÿèƒ½
 
-- ƒRƒƒ“ƒg“Še
-- ƒRƒƒ“ƒg•ÔM
-- ƒRƒƒ“ƒgíœ
-- “Šeì¬
+- ã‚³ãƒ¡ãƒ³ãƒˆæŠ•ç¨¿
+- ã‚³ãƒ¡ãƒ³ãƒˆè¿”ä¿¡
+- ã‚³ãƒ¡ãƒ³ãƒˆå‰Šé™¤
 
-# ƒT[ƒoŠÂ‹«
+# ã‚µãƒ¼ãƒç’°å¢ƒ
 
-|–¼‘O|–ðŠ„|
+|åå‰|å½¹å‰²|
 |---|---|
-|html|ƒy[ƒW\¬|
-|css|ƒfƒUƒCƒ“‘S”Ê|
-|react.js|ƒƒWƒbƒN|
-|next.js|ƒƒWƒbƒN|
-|node.js|ƒT[ƒo[ƒTƒCƒh|
-|MySQL|ƒf[ƒ^ƒx[ƒX|
+|html|ãƒšãƒ¼ã‚¸æ§‹æˆ|
+|scss|ãƒ‡ã‚¶ã‚¤ãƒ³å…¨èˆ¬|
+|next.js(react.js)|ãƒ•ãƒ­ãƒ³ãƒˆã‚¨ãƒ³ãƒ‰|
+|node.js|ã‚µãƒ¼ãƒãƒ¼ã‚µã‚¤ãƒ‰|
+|MySQL|ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹|
 
 

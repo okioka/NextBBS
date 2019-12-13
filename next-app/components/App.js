@@ -58,6 +58,8 @@ export class CommentForm extends React.Component {
     this.setState({data: data}) 
     // 再レンダリング
     // TODO : 動くがコンソールに警告が出るので調べる
+    // CommentBoxと親子関係にすればデータの受け渡しが簡単になりそう
+    // propsの理解が足りていないので勉強する
     ReactDOM.render(
       <CommentBox data={data} />,
       document.getElementById('content')

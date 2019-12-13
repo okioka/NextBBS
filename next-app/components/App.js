@@ -2,20 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import css from "../public/styles.scss"
 
-// コメントデータ
-export var data = [
- // テストデータ
- {id: 1, author: "ユーザー１", text: "初投稿", date: "2020/01/01"},
- {id: 2, author: "ユーザー２", text: "２つ目の投稿", date: "2020/01/01"}
-];
-      
 // コメントボックス
-export class CommentBox extends React.Component {
+export default class CommentBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // コメントデータ
+      data: [
+        // テストデータ
+        {id: 1, author: "ユーザー１", text: "初投稿", date: "2020/01/01"},
+        {id: 2, author: "ユーザー２", text: "２つ目の投稿", date: "2020/01/01"}
+      ],
+    };
+  }
   render() {
+    // 新規投稿を追加
+    const add = (commentList) => {
+      this.setState({ data : commentList })
+    }
     // コメントリストにデータを渡して表示
     return ( 
       <div className="CommentBox">
-        <CommentList data={this.props.data} />
+        <CommentList data={this.state.data} />
+        <CommentForm data={this.state.data} add={add} /> 
       </div>
     )
   }
@@ -40,13 +49,14 @@ class CommentList extends React.Component {
 }
 
 // 投稿フォーム
-export class CommentForm extends React.Component {
+class CommentForm extends React.Component {
   // 投稿処理 
   post() {
-    let now = new Date();
-    let id = data.length + 1
-    let name = document.getElementById("name").value
-    let comment = document.getElementById("comment").value
+    let now         = new Date();
+    let id          = this.props.data.length + 1
+    let name        = document.getElementById("name").value
+    let comment     = document.getElementById("comment").value
+    let commentList = Object.assign([], this.props.data)
     // 入力チェック
     if (name    === "" || name    === null ||
         comment === "" || comment === null) { 
@@ -54,16 +64,8 @@ export class CommentForm extends React.Component {
       return false
     }
     // 投稿内容を登録
-    data.push({id: id, author: name, text: comment, date : now.toLocaleString()})
-    this.setState({data: data}) 
-    // 再レンダリング
-    // TODO : 動くがコンソールに警告が出るので調べる
-    // CommentBoxと親子関係にすればデータの受け渡しが簡単になりそう
-    // propsの理解が足りていないので勉強する
-    ReactDOM.render(
-      <CommentBox data={data} />,
-      document.getElementById('content')
-    );
+    commentList.push({id: id, author: name, text: comment, date : now.toLocaleString()})
+    this.props.add(commentList)
     // 投稿が完了したら投稿フォームを初期化する 
     document.getElementById("name").value = ""
     document.getElementById("comment").value = ""

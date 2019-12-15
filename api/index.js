@@ -24,10 +24,10 @@ var port = process.env.PORT || 3000;
 
 // SELECTした結果をjsonで返す
 app.get('/', function(req, res){
-    connection.query('select * from posts', function (error, results) {
+    connection.query('select * from posts', function (error, posts, fields) {
         if (error) throw error;
         res.json({
-            result: results[0]
+            post: posts
         });
     });
 });

@@ -12,10 +12,9 @@
 
 |名前|役割|
 |---|---|
-|html|ページ構成|
-|scss|デザイン全般|
-|next.js(react.js)|フロントエンド|
-|node.js|サーバーサイド|
+|scss|デザイン全般(Next.jsに移行予定)|
+|Next.js(React.js)|フロントエンド|
+|Node.js|サーバーサイド|
 |MySQL|データベース|
 
 

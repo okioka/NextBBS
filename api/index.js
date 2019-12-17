@@ -20,14 +20,15 @@ app.use(cors())
 app.use(express.static('public'));
 
 // port番号を指定
-var port = process.env.PORT || 3000; 
+var port = process.env.PORT || 5000; 
 
 // SELECTした結果をjsonで返す
 app.get('/', function(req, res){
-    connection.query('select * from posts', function (error, posts, fields) {
+    connection.query("select id, user, comment, DATE_FORMAT(post_date, '%Y/%m/%d %H:%i:%S') AS post_date from posts where delete_flg='0'", 
+        function (error, posts, fields) {
         if (error) throw error;
         res.json({
-            post: posts
+            posts
         });
     });
 });

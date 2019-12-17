@@ -1,30 +1,36 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import axios from 'axios';
 import css from "../public/styles.scss"
 
 // コメントボックス
 export default class CommentBox extends React.Component {
+  // 投稿を取得しstateにsetする
+  viewCom() {
+    const url = "http://localhost:5000/";
+    axios.get(url).then(res => {
+      const posts = res.data["posts"]
+      this.setState({posts: posts})
+    }).catch(error => {
+      console.log('Error!');
+    })
+  }
   constructor(props) {
     super(props);
     this.state = {
-      // コメントデータ
-      data: [
+      // 投稿
+      posts: [
         // テストデータ
-        {id: 1, author: "ユーザー１", text: "初投稿", date: "2020/01/01"},
-        {id: 2, author: "ユーザー２", text: "２つ目の投稿", date: "2020/01/01"}
+        {id: 1, user: "テストユーザー", comment: "test", post_date: "2020/01/01"},
       ],
     };
-  }
-  render() {
-    // 新規投稿を追加
-    const add = (commentList) => {
-      this.setState({ data : commentList })
-    }
+    this.viewCom()
+  } 
+  render() {    
     // コメントリストにデータを渡して表示
     return ( 
       <div className="CommentBox">
-        <CommentList data={this.state.data} />
-        <CommentForm data={this.state.data} add={add} /> 
+        <CommentList data={this.state.posts} />
+        <CommentForm data={this.state.posts} viewCom={this.viewCom} /> 
       </div>
     )
   }
@@ -35,8 +41,8 @@ class CommentList extends React.Component {
   render() {
     const commentNodes = this.props.data.map(function(comment) {
       return (
-        <Comment author={comment.author} id={comment.id} date={comment.date} key={comment.id}>
-          {comment.text}
+        <Comment user={comment.user} id={comment.id} post_date={comment.post_date} key={comment.id}>
+          {comment.comment}
         </Comment>
       )
     })
@@ -64,8 +70,9 @@ class CommentForm extends React.Component {
       return false
     }
     // 投稿内容を登録
-    commentList.push({id: id, author: name, text: comment, date : now.toLocaleString()})
-    this.props.add(commentList)
+    // TODO : NodeでPostする
+    commentList.push({id: id, user: name, comment: comment, post_date : now.toLocaleString()})
+    this.props.viewCom()
     // 投稿が完了したら投稿フォームを初期化する 
     document.getElementById("name").value = ""
     document.getElementById("comment").value = ""
@@ -97,7 +104,7 @@ class Comment extends React.Component {
     return (
       <div className="comment">
         <h3 className="commentAuthor">
-          {this.props.id} . {this.props.author} . {this.props.date}　
+          {this.props.id} . {this.props.user} . {this.props.post_date}　
           <button>削除</button>
         </h3>
         {newLineTexts()}

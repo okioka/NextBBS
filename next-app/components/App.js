@@ -93,7 +93,7 @@ class CommentForm extends React.Component {
 
 // コメント
 class Comment extends React.Component {
-  // 削除処理
+  // TODO : 削除処理を作成
   delete() {
 
   }

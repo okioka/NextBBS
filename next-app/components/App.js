@@ -72,7 +72,7 @@ class CommentForm extends React.Component {
     document.getElementById("comment").value = ""
     // 投稿内容を登録
     axios.post(url, data).then(res => {
-
+      console.log("投稿OK")
     })
     .catch(error => {
       console.log("投稿異常")

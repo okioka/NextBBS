@@ -4,6 +4,15 @@ import css from "../public/styles.scss"
 
 // コメントボックス
 export default class CommentBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // 投稿
+      posts: [
+      ],
+    };
+    this.viewCom()
+  } 
   // 投稿を取得しstateにsetする
   viewCom() {
     const url = "http://localhost:5000/";
@@ -11,26 +20,16 @@ export default class CommentBox extends React.Component {
       const posts = res.data["posts"]
       this.setState({posts: posts})
     }).catch(error => {
-      console.log('Error!');
+      console.log("表示異常")
+      console.log(error)
     })
   }
-  constructor(props) {
-    super(props);
-    this.state = {
-      // 投稿
-      posts: [
-        // テストデータ
-        {id: 1, user: "テストユーザー", comment: "test", post_date: "2020/01/01"},
-      ],
-    };
-    this.viewCom()
-  } 
   render() {    
     // コメントリストにデータを渡して表示
     return ( 
       <div className="CommentBox">
         <CommentList data={this.state.posts} />
-        <CommentForm data={this.state.posts} viewCom={this.viewCom} /> 
+        <CommentForm data={this.state.posts} viewCom={this.viewCom()} /> 
       </div>
     )
   }
@@ -58,24 +57,27 @@ class CommentList extends React.Component {
 class CommentForm extends React.Component {
   // 投稿処理 
   post() {
-    let now         = new Date();
-    let id          = this.props.data.length + 1
+    const url       = "http://localhost:5000/post";
     let name        = document.getElementById("name").value
     let comment     = document.getElementById("comment").value
-    let commentList = Object.assign([], this.props.data)
+    const data      = {user: name, comment: comment}
     // 入力チェック
     if (name    === "" || name    === null ||
         comment === "" || comment === null) { 
       alert("未入力の項目があります")
       return false
     }
-    // 投稿内容を登録
-    // TODO : NodeでPostする
-    commentList.push({id: id, user: name, comment: comment, post_date : now.toLocaleString()})
-    this.props.viewCom()
     // 投稿が完了したら投稿フォームを初期化する 
     document.getElementById("name").value = ""
     document.getElementById("comment").value = ""
+    // 投稿内容を登録
+    axios.post(url, data).then(res => {
+
+    })
+    .catch(error => {
+      console.log("投稿異常")
+      console.log(error)
+    });
   }
   render() {
     return (
@@ -91,6 +93,10 @@ class CommentForm extends React.Component {
 
 // コメント
 class Comment extends React.Component {
+  // 削除処理
+  delete() {
+
+  }
   render() {
     // 投稿本文の改行コードを<br>タグに置き換える
     const newLineTexts = () => {

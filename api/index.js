@@ -24,13 +24,23 @@ var port = process.env.PORT || 5000;
 
 // SELECTした結果をjsonで返す
 app.get('/', function(req, res){
-    connection.query("select id, user, comment, DATE_FORMAT(post_date, '%Y/%m/%d %H:%i:%S') AS post_date from posts where delete_flg='0'", 
-        function (error, posts, fields) {
-        if (error) throw error;
-        res.json({
-            posts
-        });
-    });
+  const sql = "SELECT id, user, comment, DATE_FORMAT(post_date, '%Y/%m/%d %H:%i:%S') AS post_date FROM posts WHERE delete_flg = '0'"
+  connection.query(sql, function (error, posts, fields) {
+    if (error) throw error;
+      res.json({
+        posts
+      });
+  });
+});
+
+// postを受け取りINSERTする
+app.post('/post', function(req, res){
+  const user    = req.body.user
+  const comment = req.body.comment
+  const sql     = "INSERT INTO posts VALUES(0, '" + user + "', '" + comment + "', DEFAULT, 0)"
+  connection.query(sql, function (error, posts, fields) {
+    if (error) throw error;
+  });
 });
 
 //サーバ起動

@@ -1,5 +1,5 @@
-import css from "../public/styles.scss"
-import App from "../components/App.js"
+import css  from "../public/styles.scss"
+import App  from "../components/App.js"
 
 const Index = () => (
   <div className={css.center}>

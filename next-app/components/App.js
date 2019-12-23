@@ -8,8 +8,7 @@ export default class CommentBox extends React.Component {
     super(props);
     this.state = {
       // 投稿
-      posts: [
-      ],
+      posts: [],
     };
     this.viewCom()
   } 
@@ -20,7 +19,7 @@ export default class CommentBox extends React.Component {
       const posts = res.data["posts"]
       this.setState({posts: posts})
     }).catch(error => {
-      console.log("表示異常")
+      console.log("投稿表示NG")
       console.log(error)
     })
   }
@@ -72,10 +71,9 @@ class CommentForm extends React.Component {
     document.getElementById("comment").value = ""
     // 投稿内容を登録
     axios.post(url, data).then(res => {
-      console.log("投稿OK")
     })
     .catch(error => {
-      console.log("投稿異常")
+      console.log("新規投稿NG")
       console.log(error)
     });
   }
@@ -93,9 +91,18 @@ class CommentForm extends React.Component {
 
 // コメント
 class Comment extends React.Component {
-  // TODO : 削除処理を作成
+  // 投稿削除処理
   delete() {
-
+    const url       = "http://localhost:5000/delete";
+    let   id        = this.props.id
+    const data      = {id: id}
+    // 投稿削除
+    axios.post(url, data).then(res => {
+    })
+    .catch(error => {
+      console.log("投稿削除NG")
+      console.log(error)
+    });
   }
   render() {
     // 投稿本文の改行コードを<br>タグに置き換える
@@ -111,7 +118,7 @@ class Comment extends React.Component {
       <div className="comment">
         <h3 className="commentAuthor">
           {this.props.id} . {this.props.user} . {this.props.post_date}　
-          <button>削除</button>
+          <button className={css.btn_small} onClick={this.delete.bind(this)}>削除</button>
         </h3>
         {newLineTexts()}
       </div>

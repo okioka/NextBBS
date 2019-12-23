@@ -22,7 +22,7 @@ app.use(express.static('public'));
 // port番号を指定
 var port = process.env.PORT || 5000; 
 
-// SELECTした結果をjsonで返す
+// 投稿を取得しjsonで返す
 app.get('/', function(req, res){
   const sql = "SELECT id, user, comment, DATE_FORMAT(post_date, '%Y/%m/%d %H:%i:%S') AS post_date FROM posts WHERE delete_flg = '0'"
   connection.query(sql, function (error, posts, fields) {
@@ -33,11 +33,20 @@ app.get('/', function(req, res){
   });
 });
 
-// postを受け取りINSERTする
+// 新規投稿を登録する
 app.post('/post', function(req, res){
   const user    = req.body.user
   const comment = req.body.comment
   const sql     = "INSERT INTO posts VALUES(0, '" + user + "', '" + comment + "', DEFAULT, 0)"
+  connection.query(sql, function (error, posts, fields) {
+    if (error) throw error;
+  });
+});
+
+// 削除ボタンを押した投稿の削除フラグを立てる
+app.post('/delete', function(req, res){
+  const id = req.body.id
+  const sql     = "UPDATE posts SET delete_flg = '1' WHERE id = " + id 
   connection.query(sql, function (error, posts, fields) {
     if (error) throw error;
   });

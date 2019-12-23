@@ -1,4 +1,4 @@
-/* TODO : JS化する */
+
 /* 中央寄せ */
 .center {
   text: {
@@ -33,6 +33,13 @@
   border-radius: 3px;
   transition: 0.4s;
   font-size: 1.2em;
+}
+
+/* 小さいボタン */
+.btn_small {
+  @extend .btn;
+  padding: 0.3em 0.6em;
+  font-size: 0.7em;
 }
 
 /* ボタンにカーソルが乗ったら見た目を変える */

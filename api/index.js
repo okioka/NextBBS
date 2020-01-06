@@ -37,8 +37,8 @@ app.get('/', function(req, res){
 app.post('/post', function(req, res){
   const user    = req.body.user
   const comment = req.body.comment
-  const sql     = "INSERT INTO posts VALUES(0, '" + user + "', '" + comment + "', DEFAULT, 0)"
-  connection.query(sql, function (error, posts, fields) {
+  const sql     = "INSERT INTO posts VALUES(0, ?, ?, DEFAULT, 0)"
+  connection.query(sql, [user, comment], function (error, posts, fields) {
     if (error) throw error;
   });
 });
@@ -46,8 +46,8 @@ app.post('/post', function(req, res){
 // 削除ボタンを押した投稿の削除フラグを立てる
 app.post('/delete', function(req, res){
   const id = req.body.id
-  const sql     = "UPDATE posts SET delete_flg = '1' WHERE id = " + id 
-  connection.query(sql, function (error, posts, fields) {
+  const sql     = "UPDATE posts SET delete_flg = '1' WHERE id = ?" 
+  connection.query(sql, [id], function (error, posts, fields) {
     if (error) throw error;
   });
 });

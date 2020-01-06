@@ -93,9 +93,14 @@ class CommentForm extends React.Component {
 class Comment extends React.Component {
   // 投稿削除処理
   delete() {
-    const url       = "http://localhost:5000/delete";
-    let   id        = this.props.id
-    const data      = {id: id}
+    const url  = "http://localhost:5000/delete";
+    let   id   = this.props.id
+    const data = {id: id}
+    let   ret  = confirm("投稿を削除しますか？");
+    // 確認ダイアログでいいえを選択した場合は処理を終了する
+    if(ret === false) {
+      return false;
+    }
     // 投稿削除
     axios.post(url, data).then(res => {
     })

@@ -16,7 +16,7 @@ app.use(cors())
 app.use(express.static('public'));
 
 // port番号を指定
-var port = process.env.PORT || 5000; 
+const port = process.env.PORT || 5000; 
 
 // 投稿を取得しjsonで返す
 app.get('/', function(req, res){

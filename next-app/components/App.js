@@ -57,8 +57,8 @@ class CommentForm extends React.Component {
   // 投稿処理 
   post() {
     const url       = "http://localhost:5000/post";
-    let name        = document.getElementById("name").value
-    let comment     = document.getElementById("comment").value
+    const name      = document.getElementById("name").value
+    const comment   = document.getElementById("comment").value
     const data      = {user: name, comment: comment}
     // 入力チェック
     if (name    === "" || name    === null ||
@@ -94,9 +94,9 @@ class Comment extends React.Component {
   // 投稿削除処理
   delete() {
     const url  = "http://localhost:5000/delete";
-    let   id   = this.props.id
+    const id   = this.props.id
     const data = {id: id}
-    let   ret  = confirm("投稿を削除しますか？");
+    const ret  = confirm("投稿を削除しますか？");
     // 確認ダイアログでいいえを選択した場合は処理を終了する
     if(ret === false) {
       return false;

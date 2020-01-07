@@ -3,7 +3,7 @@
 CRUDを全て学べるので掲示板を作成する。  
 2019/12/23 ひとまず完成とする。  
 レビューなどで改善点や指摘があった場合、Issueを作成し随時修正する。  
-  
+
 # 画面サンプル
 [![Image from Gyazo](https://i.gyazo.com/608906ac710868f5621d5914ae3d56d6.png)](https://gyazo.com/608906ac710868f5621d5914ae3d56d6)
 

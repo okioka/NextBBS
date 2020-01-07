@@ -1,17 +1,13 @@
 // ライブラリ読み込み
-var express    = require('express');
-var app        = express();
-var bodyParser = require('body-parser');
-const cors = require('cors')
+const express    = require('express');
+const app        = express();
+const bodyParser = require('body-parser');
+const cors       = require('cors')
+const mysql      = require('mysql');
+const dbCon      = require('./DB/dbConnection.js');
 
 // データベースに接続
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'root',
-  database : 'BBS'
-});
+const connection = mysql.createConnection(dbCon.dbConnection);
 
 //body-parserの設定
 app.use(bodyParser.urlencoded({ extended: true }));

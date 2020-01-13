@@ -1,5 +1,5 @@
-import React from 'react';
-import axios from 'axios';
+import React from 'react'
+import axios from 'axios'
 import css from "../public/styles.scss"
 
 // コメントボックス
@@ -14,11 +14,12 @@ export default class CommentBox extends React.Component {
   } 
   // 投稿を取得しstateにsetする
   viewCom() {
-    const url = "http://localhost:5000/";
+    const url = "http://localhost:5000/"
     axios.get(url).then(res => {
       const posts = res.data["posts"]
       this.setState({posts: posts})
     }).catch(error => {
+      arelt("投稿の表示ができません")
       console.log("投稿表示NG")
       console.log(error)
     })
@@ -73,6 +74,7 @@ class CommentForm extends React.Component {
     axios.post(url, data).then(res => {
     })
     .catch(error => {
+      arelt("コメントの投稿に失敗しました")
       console.log("新規投稿NG")
       console.log(error)
     });
@@ -93,10 +95,10 @@ class CommentForm extends React.Component {
 class Comment extends React.Component {
   // 投稿削除処理
   delete() {
-    const url  = "http://localhost:5000/delete";
+    const url  = "http://localhost:5000/delete"
     const id   = this.props.id
     const data = {id: id}
-    const ret  = confirm("投稿を削除しますか？");
+    const ret  = confirm("投稿を削除しますか？")
     // 確認ダイアログでいいえを選択した場合は処理を終了する
     if(ret === false) {
       return false;
@@ -105,6 +107,7 @@ class Comment extends React.Component {
     axios.post(url, data).then(res => {
     })
     .catch(error => {
+      arelt("投稿の削除に失敗しました")
       console.log("投稿削除NG")
       console.log(error)
     });

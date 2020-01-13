@@ -8,9 +8,11 @@
 
 /* コメント欄の背景 */
 .back {
-  margin-top: 30px;
-  margin-left : auto; 
-  margin-right : auto;
+  margin: {
+    top: 30px;
+    left : auto; 
+    right : auto;
+  }
   height: 70%;
   width: 60%;
   background: #BBBBBB;
@@ -18,9 +20,13 @@
 
 /* コメント表示部分 */
 .bbs {
-  margin-left : 100px; 
-  margin-right : 100px;
-  text-align: left;
+  margin: {
+    left : 100px; 
+    right : 100px;
+  }
+  text: {
+    align: left;
+  }
 }
 
 /* ボタンのデザイン */
@@ -30,16 +36,22 @@
   color: #000000;
   background: #FFFFFF;
   border: solid 2px #000000;
-  border-radius: 3px;
+  border: {
+    radius: 3px;
+  }
   transition: 0.4s;
-  font-size: 1.2em;
+  font: {
+    size: 1.2em;
+  }
 }
 
 /* 小さいボタン */
 .btn_small {
   @extend .btn;
   padding: 0.3em 0.6em;
-  font-size: 0.7em;
+  font: {
+    size: 0.7em;
+  }
 }
 
 /* ボタンにカーソルが乗ったら見た目を変える */

@@ -4,4 +4,4 @@ exports.dbConnection = {
   user     : 'root',
   password : 'root',
   database : 'BBS'
-};
+}

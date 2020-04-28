@@ -2,6 +2,5 @@
 exports.dbConnection = {
   host     : 'localhost',
   user     : 'root',
-  password : 'root',
   database : 'BBS'
 }

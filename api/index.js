@@ -42,7 +42,7 @@ app.post('/post', function(req, res){
 // 削除ボタンを押した投稿の削除フラグを立てる
 app.post('/delete', function(req, res){
   const id = req.body.id
-  const sql     = "UPDATE posts SET delete_flg = '1' WHERE id = ?" 
+  const sql     = "UPDATE posts SET delete_flg = '1' WHERE id = ?"
   connection.query(sql, [id], function (error, posts, fields) {
     if (error) throw error
   })
